@@ -1,0 +1,11 @@
+Artificial Intelligence Code
+---------------------------------------------------
+
+1. Search.lisp -- 
+		Breadth First Search
+		Depth First Search
+		Best First Search
+		Beam Search		
+
+2. Simplegrammar.lisp --
+		Generate a sentence from a given grammar.
