@@ -57,13 +57,14 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun binary-tree (x) (list (* 2 x) (+ 1 (* 2 x))))
-(depth-first-search 6 (is 12) #'binary-tree)
-(breadth-first-search 1 (is 12) #'binary-tree)
 
 (defun finite-binary-tree (n)
 	#'(lambda (x)
 		(remove-if #'(lambda (child) (> child n))
 			(binary-tree x))))
+
+(depth-first-search 6 (is 12) #'binary-tree)
+(breadth-first-search 1 (is 12) #'binary-tree)
 
 (depth-first-search 1 (is 12) (finite-binary-tree 15))
 (breadth-first-search 1 (is 12) (finite-binary-tree 15))
