@@ -35,22 +35,33 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun depth-first-search (start goal successors)
- 	"Uses Depth First search strategy."
+ 	"Depth First uses a stack struct for search."
 	(tree-search (list start) goal successors #'append))
 
 (defun breadth-first-search (start goal successors)
+	"Breadth first uses a queue struct to search."
 	(tree-search (list start) goal successors #'prepend))
 
 (defun best-first-search (start goal successors cost-fn)
+	"Non-optimal search using a heuristic."
 	(tree-search (list start) goal successors (sorter cost-fn)))
 
 (defun beam-search (start goal successors cost-fn beam-width)
+	"Similiar to best first but useful when many solutions are possible."
 	(tree-search (list start) goal successors
 		#'(lambda (old new)
 			(let ((sorted (funcall (sorter cost-fn) old new)))
 				(if (> beam-width (length sorted))
 					sorted
 					(subseq sorted 0 beam-width))))))
+
+(defun iter-wide-beam-search (start goal successors cost-fn
+								&key (width 1) (max 100))
+	"Try different width on beam search."
+	(unless (> width max)
+		(or (beam-search start goal successors cost-fn width)
+			(iter-wide-beam-search start goal successors cost-fn
+				:width (+ width 1) :max max))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;	
 ;; Testing Uninformed search
@@ -71,3 +82,7 @@
 
 (best-first-search 1 (is 12) #'binary-tree (diff 12))
 (beam-search 1 (is 4) #'binary-tree (diff 4) 2)
+
+(iter-wide-beam-search 1 (is 12) (finite-binary-tree 15) (diff 12))
+
+
