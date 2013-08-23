@@ -64,7 +64,7 @@
 				:width (+ width 1) :max max))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;	
-;; Testing Uninformed search
+;; Testing Search
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun binary-tree (x) (list (* 2 x) (+ 1 (* 2 x))))
