@@ -9,3 +9,10 @@ Artificial Intelligence Code
 
 2. Simplegrammar.lisp --
 		Generate a sentence from a given grammar.
+
+3. 8Puzzle.py --
+		Solves the 8-puzzle using informed search.
+
+4. Sudoku.java --
+		Solves sudoku puzzles using back tracking.
+
